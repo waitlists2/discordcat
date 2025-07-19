@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, ChevronRight, Search, MoreHorizontal } from "lucide-react";
 import { SearchResults as SearchResultsType, SearchFilters, DiscordUser } from "@shared/schema";
+import { format } from 'date-fns';
 
 interface SearchResultsProps {
   filters: SearchFilters;
@@ -89,7 +90,8 @@ export function SearchResults({ filters, onPageChange }: SearchResultsProps) {
   });
 
   const formatTimestamp = (timestamp: string) => {
-    return new Date(timestamp).toLocaleString();
+    // Format as 'April 4th, 2025, 3:45 PM'
+    return format(new Date(timestamp), "MMMM do, yyyy, h:mm a");
   };
 
   const handlePageChange = (newPage: number) => {

@@ -1,11 +1,11 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { config } from "dotenv";
+import dotenv from "dotenv";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { elasticsearchService } from "./services/elasticsearch";
 
 // Load environment variables
-config();
+dotenv.config();
 
 const app = express();
 app.use(express.json());

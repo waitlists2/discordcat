@@ -24,5 +24,6 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
+    allowedHosts: ["discordcat.onrender.com"], // This line allows requests from your specified host
   },
 });

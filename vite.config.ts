@@ -24,6 +24,6 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
-    allowedHosts: 'all', // Allow any and all hosts
+    allowedHosts: 'true', // Allow any and all hosts
   },
 });

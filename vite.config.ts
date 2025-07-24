@@ -24,13 +24,6 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
-    allowedHosts: [
-      "localhost",
-      "127.0.0.1",
-      "0.0.0.0",
-      "discordcat.onrender.com",
-      ".onrender.com", // Allow all Render subdomains
-      "all" // Fallback to allow all hosts
-    ],
+    allowedHosts: "all",
   },
 });

@@ -146,7 +146,7 @@ class ElasticsearchService {
     try {
       console.log("Elasticsearch searchMessages called with filters:", filters);
 
-      const pageSize = 100; // Increased page size for better UX
+      const pageSize = 50; // Keep reasonable page size
       const from = (filters.page - 1) * pageSize;
 
       const query: any = {
@@ -201,10 +201,7 @@ class ElasticsearchService {
         ],
         from,
         size: pageSize,
-        // Remove any default limits
         timeout: '60s', // Increase timeout for large result sets
-        // Ensure we can access all results beyond 10k limit
-        max_result_window: 1000000, // Allow up to 1M results
       };
 
       console.log("Elasticsearch search params:", JSON.stringify(searchParams, null, 2));
@@ -247,9 +244,17 @@ class ElasticsearchService {
       console.error('Error searching messages:', {
         error: error?.message || error,
         stack: error?.stack,
-        filters
+        filters,
+        meta: error?.meta,
+        body: error?.body
       });
-      throw new Error(`Failed to search messages: ${error?.message || error}`);
+      
+      // More specific error handling
+      if (error?.meta?.statusCode === 400) {
+        throw new Error(`Invalid search query: ${error?.meta?.body?.error?.reason || error?.message}`);
+      }
+      
+      throw new Error(`Search failed: ${error?.message || 'Unknown error'}`);
     }
   }
 }

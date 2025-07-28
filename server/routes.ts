@@ -51,7 +51,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         stack: error?.stack,
         query: req.query
       });
-      res.status(500).json({ error: "Failed to search messages", details: error?.message || String(error) });
+      
+      // Send more specific error status codes
+      const statusCode = error?.message?.includes('Invalid search query') ? 400 : 500;
+      res.status(statusCode).json({ 
+        error: "Failed to search messages", 
+        details: error?.message || String(error) 
+      });
     }
   });
 

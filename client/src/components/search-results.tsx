@@ -120,7 +120,7 @@ export function SearchResults({ filters, onPageChange }: SearchResultsProps) {
   const getPaginationRange = () => {
     if (!results) return [];
     const currentPage = results.page;
-    const totalPages = Math.ceil(results.total / 100);
+    const totalPages = Math.ceil(results.total / 50);
     const range = [];
     
     // Always show first page
@@ -215,10 +215,10 @@ export function SearchResults({ filters, onPageChange }: SearchResultsProps) {
         <CardContent className="pt-6">
           <div className="mb-4 flex items-center justify-between">
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              Found {results.total.toLocaleString()} messages • Showing {((results.page - 1) * 100) + 1}-{Math.min(results.page * 100, results.total)} of {results.total.toLocaleString()}
+              Found {results.total.toLocaleString()} messages • Showing {((results.page - 1) * 50) + 1}-{Math.min(results.page * 50, results.total)} of {results.total.toLocaleString()}
             </div>
             <div className="text-xs text-gray-400">
-              Page {results.page} of {Math.ceil(results.total / 100)}
+              Page {results.page} of {Math.ceil(results.total / 50)}
             </div>
           </div>
           
@@ -347,7 +347,7 @@ export function SearchResults({ filters, onPageChange }: SearchResultsProps) {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => handlePageChange(Math.ceil(results.total / 100))}
+            onClick={() => handlePageChange(Math.ceil(results.total / 50))}
             disabled={!results.has_more}
             className="flex items-center space-x-1"
           >

@@ -146,7 +146,7 @@ class ElasticsearchService {
     try {
       console.log("Elasticsearch searchMessages called with filters:", filters);
 
-      const pageSize = 50;
+      const pageSize = 100; // Increased page size for better UX
       const from = (filters.page - 1) * pageSize;
 
       const query: any = {
@@ -191,6 +191,7 @@ class ElasticsearchService {
       const searchParams = {
         index: this.indices,
         query,
+        track_total_hits: true, // Ensure we get accurate total counts
         sort: [
           {
             timestamp: {
@@ -200,6 +201,10 @@ class ElasticsearchService {
         ],
         from,
         size: pageSize,
+        // Remove any default limits
+        timeout: '60s', // Increase timeout for large result sets
+        // Ensure we can access all results beyond 10k limit
+        max_result_window: 1000000, // Allow up to 1M results
       };
 
       console.log("Elasticsearch search params:", JSON.stringify(searchParams, null, 2));

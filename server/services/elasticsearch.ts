@@ -7,7 +7,7 @@ dotenv.config();
 
 class ElasticsearchService {
   private client: Client;
-  private indices = ['chunk1', 'chunk2', 'chunk3', 'chunk4', 'chunk5', 'chunk6', 'chunk7', 'chunk8', 'chunk9', 'chunk10', 'chunk11', 'chunk12', 'chunk13', 'chunk14', 'chunk15', 'chunk16', 'chunk17', 'chunk18', 'chunk19', 'chunk20', 'chunk21', 'chunk22', 'chunk23', 'chunk24', 'chunk25', 'chunk26', 'chunk27', 'chunk28', 'chunk29', 'chunk30'];
+  private indices = ['chunk1', 'chunk2', 'chunk3', 'chunk4', 'chunk5', 'chunk6', 'chunk7', 'chunk8', 'chunk9', 'chunk10', 'chunk11', 'chunk12', 'chunk13', 'chunk14', 'chunk15', 'chunk16', 'chunk17', 'chunk18', 'chunk19', 'chunk20', 'chunk21', 'chunk22', 'chunk23', 'chunk24', 'chunk25', 'chunk26', 'chunk27', 'chunk28', 'chunk29', 'chunk30', 'chunk31', 'chunk32', 'chunk33', 'chunk34'];
 
   constructor() {
     const cloudId = process.env.ELASTICSEARCH_CLOUD_ID;
